@@ -7,6 +7,7 @@ import Interface from '@/pages/Interface'
 import RoutingTable from '@/pages/RoutingTable'
 import System from '@/pages/System'
 import Trap from '@/pages/Trap'
+import Login from '@/pages/Login'
 
 Vue.use(Router)
 
@@ -15,6 +16,15 @@ export default new Router({
   // 加了这个就不会出现地址栏多/#
   mode: 'history',
   routes: [
+    {
+      path: '/',
+      redirect: '/login'
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
     {
       path: '/',
       name: 'Welcome',

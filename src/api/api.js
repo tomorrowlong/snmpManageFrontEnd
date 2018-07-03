@@ -58,3 +58,10 @@ export const getTraps = params => {
     url: `${base}/getTraps`
   }).then(res => res.data)
 }
+export const login = params => {
+  return axios({
+    method: 'post',
+    url: `${base}/login`,
+    data: params
+  }).then(res => res.data)
+}

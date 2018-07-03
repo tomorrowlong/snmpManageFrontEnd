@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
+import Toast from './toast/Toast.js'
 import VueAxios from 'vue-axios'
 import store from '../store/store'
 // 经过考虑，弃用Buefy，使用bootstrap
@@ -28,6 +29,7 @@ import './assets/css/font-awesome.min.css'
 // Vue.use(Buefy)
 // 执行get/post的，很像之前例子中的resource的$http.get()
 Vue.use(VueAxios, axios)
+Vue.use(Toast)
 // Vue.config is an object containing Vue’s global configurations.
 // You can modify its properties listed below before bootstrapping your application:
 // Set this to false to prevent the production tip on Vue startup.
@@ -40,4 +42,16 @@ new Vue({
   store,
   template: '<App/>',
   components: { App }
+})
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login' || to.path === '/register') {
+    next()
+  } else {
+    const signedState = sessionStorage.getItem('signedState')
+    if (signedState === 'out' || signedState === null) {
+      next({ path: '/login' })
+    } else {
+      next()
+    }
+  }
 })

@@ -10,7 +10,8 @@ const store = new Vuex.Store({
     topoData: [],
     nodeStatus: [],
     selectedIp: '',
-    selectedCommunity: ''
+    selectedCommunity: '',
+    signedStatus: false
   },
   getters: {
 
@@ -36,7 +37,9 @@ const store = new Vuex.Store({
     }
   },
   mutations: {
-
+    signin (state) {
+      state.signedStatus = true
+    },
   }
 })
 
